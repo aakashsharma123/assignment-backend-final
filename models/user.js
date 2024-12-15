@@ -1,20 +1,23 @@
 import mongoose from "mongoose";
 
-const userSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({ //user login and register schema
   
   name : {
     type : String , 
-    required : true
+    required : true,
+    unique: true,
   },
 
   username: {
     type: String,
-    required: true
+    required: true,
+    unique: true,
   },
 
   password: {
     type: String,
-    required: true
+    required: true,
+    unique: true,
   }
 });
 

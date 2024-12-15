@@ -1,16 +1,16 @@
-import mongoose from "mongoose";
+import mongoose from "mongoose"; // imported mongoose 
 
-mongoose.connect ("mongodb://127.0.0.1:27017/Shoppyglobe");
+mongoose.connect ("mongodb://127.0.0.1:27017/Shoppyglobe"); //this is the url for connecting to database and the database name will Assignment
 
 
-const db = mongoose.connection;
+const db = mongoose.connection; // its saying it will connect to this url
 
-db.on ("connected" , () => {
+db.on ("connected" , () => { // its saying it will connect to this url
     console.log ("mongodb is connected")
 })
-
-db.on ("disconnected" , () => {
+ 
+db.on ("disconnected" , () => {  // if database not connected
     console.log ("mongodb is not connected")
 })
 
-export default db
+export default db //exporting the database 

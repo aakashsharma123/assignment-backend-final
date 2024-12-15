@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const CartSchema = new mongoose.Schema ({
+const CartSchema = new mongoose.Schema ({  // cart schema for structure of the cartproduct 
 
      
     title : {
@@ -37,7 +37,8 @@ const CartSchema = new mongoose.Schema ({
 
 })
 
-const cartModel = mongoose.model ("cart" , CartSchema);
+const cartModel = mongoose.model ("cart" , CartSchema);  // we can now use that schema and add to cart
+
 
 export default cartModel;
 

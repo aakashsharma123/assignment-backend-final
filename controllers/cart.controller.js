@@ -1,10 +1,10 @@
 import cartModel from "../models/Cart.js";
 
-export async function addCart(req, res) {
-  const { title, description, rating, price, images, productids } = req.body;
+export async function addCart(req, res) { // for adding  to the cart
+  const { title, description, rating, price, images, productids } = req.body; //from the req.body we took it 
 
   try {
-    const addProduct = new cartModel({
+    const addProduct = new cartModel({ // Create a new cart item document with provided data
       title,
       description,
       rating,
@@ -13,7 +13,7 @@ export async function addCart(req, res) {
       productids
     });
 
-    const addedProduct = await addProduct.save();
+    const addedProduct = await addProduct.save();  // Save the new cart item to the database
 
     addedProduct
       ? res
@@ -26,7 +26,7 @@ export async function addCart(req, res) {
   }
 }
 
-export async function getCartDetails(req, res) {
+export async function getCartDetails(req, res) { // how many products are addded to cart we use this funtion
   const allCartItems = await cartModel.find();
   try {
     cartModel.length > 0
@@ -40,15 +40,17 @@ export async function getCartDetails(req, res) {
 export async function deleteCartItems(req, res) {
   const id = req.params.id;
   try {
-    const deleteItems = await cartModel.deleteMany({ productids: id });
+    const deleteItems = await cartModel.deleteMany({ productids: id });  // Delete cart items with matching product ID
+
     // console.log(deleteItems);
 
-    deleteItems
+    deleteItems // Check if any items were deleted
       ? res
           .status(200)
-          .json({ message: "caritems has been deletedSuccessfully" })
-      : res.status(404).json({ message: "no user found with that id" });
+          .json({ message: "caritems has been deletedSuccessfully" })  // Send success message if deleted
+
+      : res.status(404).json({ message: "no user found with that id" }); // Send message if no items found
   } catch (err) {
-    res.status(500).json({ message: `something went wrong ${err}` });
+    res.status(500).json({ message: `something went wrong ${err}` }); // Send generic error message
   }
 }
